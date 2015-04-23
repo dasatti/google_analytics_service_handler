@@ -321,10 +321,6 @@ class GoogleAnalyticsServiceHandler {
             if($this->dimension!=''){
                 $parms['dimensions'] = $this->dimension;
             }
-            
-            if($this->sort!=''){
-                $parms['sort'] = $this->sort;
-            }
                 
             //echo $this->profile_id,':',$this->start_date,':',  $this->end_date,':',  $this->metrics;
             $this->data = $this->analytics_service->data_ga->get($this->profile_id,  $this->start_date,
@@ -351,7 +347,7 @@ class GoogleAnalyticsServiceHandler {
      * @return type
      */
     public function get_hourly_analytics(){
-        $this->set_dimensions("ga:day,ga:hour");
+        $this->set_dimensions("ga:hour");
         return $this->get_analytics();
     }
     
@@ -361,7 +357,6 @@ class GoogleAnalyticsServiceHandler {
      */
     public function get_daily_analytics(){
         $this->set_dimensions("ga:day,ga:month");
-        $this->set_sort('ga:month,ga:day');
         return $this->get_analytics();
     }
     
@@ -371,7 +366,6 @@ class GoogleAnalyticsServiceHandler {
      */
     public function get_date_analytics(){
         $this->set_dimensions("ga:date,ga:month");
-        $this->set_sort('ga:month,ga:date');
         return $this->get_analytics();
     }
     
@@ -381,7 +375,6 @@ class GoogleAnalyticsServiceHandler {
      */
     public function get_weekly_analytics(){
         $this->set_dimensions("ga:week,ga:month");
-        $this->set_sort('ga:month,ga:week');
         return $this->get_analytics();
     }
     
@@ -391,7 +384,6 @@ class GoogleAnalyticsServiceHandler {
      */
     public function get_monthly_analytics(){
         $this->set_dimensions("ga:month,ga:year");
-        $this->set_sort('ga:year,ga:month');
         return $this->get_analytics();
     }
     
